@@ -13,7 +13,7 @@ public class cbr {
     	System.out.println("Enter your token: ");
     	Scanner scanner = new Scanner(System.in);
     	String token = scanner.nextLine();
-    	token = "CAACEdEose0cBADoUZCVGhB55NZCqcnvJn7Vc3umBJVpwHe5SeusobXKBftBglwEbYmlZBTfZBHXmTvlihQTodyj0PoUZBnoQNQ0d6KuHZCStnmViy7wADeJxETOJ4JN0wyr2tiZC1i2OFZABRWIwk2pjsXPBX4vXxmWdfiKcUCscrsMIFDXMXbtH6UvLbLlqyD2N340LkDZAA2ZALX83ZCvtBBoRIZBNJnMkatcZD";
+    	token = "CAACEdEose0cBAN5B9g6ieA3IZCid5aAs1E0ZCNeiI45Pfo2r9ndr52kXI2oXv94r1UZC8Vj1RfiDL2aahoxPHbBWnwAKZBkKmPMxHDBIu5K16rI2KMXZCq2uNqTHqGTZC0je333ZBY4XIZBBKaCAK8ZAHcGgdnoXRivMfnTDXjlZCAKWy1NBqcXZBUDjhI06rS1LT4KHSP0ZCvSi7QGYbo2SRfNfZCkpGPauxA4YZD";
     	String url1 = "https://graph.facebook.com/me/posts?limit=1000&fields=story%2Cmessage%2Cstatus_type&access_token="+token+"&__mref=message_bubble";
     	
     	DataOutputStream out1 = new DataOutputStream(new FileOutputStream("output.txt"));
@@ -25,10 +25,12 @@ public class cbr {
 	    String line;
 	    while ((line = in.readLine()) != null) {
 	    	//System.out.println(line);
-	    	out1.writeBytes(line);
+	    	//out1.writeBytes(line);
 	    	json=line;
 	    }
 	    in.close();
+	    
+	   
 	    
 	
 		//System.out.println(json);
@@ -64,10 +66,16 @@ public class cbr {
 		for(i=0;i<arraylistsize;i++)
 		{
 			if(arrays.get(i).has("story"))
-			System.out.println(arrays.get(i).get("story"));
+			{
+				System.out.println(arrays.get(i).get("story"));
+				out1.writeBytes((String) arrays.get(i).get("story")+"\n");
+			}
 			
 			if(arrays.get(i).has("message"))
-			System.out.println(arrays.get(i).get("message")  );
+			{
+				System.out.println(arrays.get(i).get("message")  );
+				out1.writeBytes((String)arrays.get(i).get("message")+"\n");
+			}
 		}
 		
 	
